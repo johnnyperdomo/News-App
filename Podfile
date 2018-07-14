@@ -9,4 +9,5 @@ target 'News-App' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Alamofire', '~> 4.6'
   pod 'AlamofireImage', '~> 3.3'
+  pod 'SDWebImage', '~> 4.0'
 end

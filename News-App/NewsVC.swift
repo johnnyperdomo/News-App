@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import AlamofireImage
+import SDWebImage
 
 
 class NewsVC: UIViewController {
@@ -20,7 +21,6 @@ class NewsVC: UIViewController {
     var newsSourceArray = [String]()
     var imageURLArray = [String]()
     var imageArray = [UIImage]()
-    
     
     
     override func viewDidLoad() {
@@ -72,10 +72,9 @@ extension NewsVC: UITableViewDelegate, UITableViewDataSource {
         
         var titles = String()
         var sources = String()
-        var images: UIImage?
         
         if titleArray.count > 0 {
-             titles = titleArray[indexPath.row]
+             titles = titleArray[indexPath.row ]
         } else {
              titles = ""
         }
@@ -85,18 +84,17 @@ extension NewsVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             sources = ""
         }
-        
-        if imageArray.count > 0 {
-            images = imageArray[indexPath.row]
+    
+        if imageURLArray.count > 0 {
+            cell.newsImage.sd_setImage(with: URL(string: imageURLArray[indexPath.row]))
         } else {
-            images = UIImage(named: "newsPlaceholder")!
+            cell.newsImage.image = UIImage(named: "newsPlaceholder")!
         }
-        
         
         
         cell.newsImage.layer.cornerRadius = 10
         
-        cell.configureCell(newsImage: images!, newsTitle: titles, newsSource: sources)
+        cell.configureCell(newsTitle: titles, newsSource: sources)
         
         return cell
     }
@@ -115,21 +113,15 @@ extension NewsVC {
                 
                 for item in json["articles"].arrayValue {
                     
+                    
+            
                     self.titleArray.append(item["title"].stringValue)
                     self.newsSourceArray.append(item["source"]["name"].stringValue)
                     self.imageURLArray.append(item["urlToImage"].stringValue)
+                
+
                     
-                    Alamofire.request(item["urlToImage"].stringValue).responseImage { (response) in
-
-                        guard let image = response.result.value else { return }
-
-                        
-                        //print(self.imageURLArray)
-                        self.imageArray.append(image)
-                       // print(self.imageArray.count)
-                    }
                 }
-            self.newsTableView.reloadData()
             complete(true)
         
         }
