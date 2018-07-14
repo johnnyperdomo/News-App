@@ -37,9 +37,7 @@ class NewsVC: UIViewController {
             if success {
                 print("success")
                 
-                self.imageURLArray = self.imageURLArray.filter { $0 != ""} //filter array to remove nil values
-                
-                print(self.newsStoryUrlArray)
+           //     self.imageURLArray = self.imageURLArray.filter { $0 != ""} //filter array to remove nil values
                 self.newsTableView.reloadData()
                 print(self.imageURLArray.count)
             } else {
@@ -85,7 +83,15 @@ extension NewsVC: UITableViewDelegate, UITableViewDataSource {
         }
     
         if imageURLArray.count > 0 {
-            cell.newsImage.sd_setImage(with: URL(string: imageURLArray[indexPath.row]))
+            
+            cell.newsImage.sd_setImage(with: URL(string: imageURLArray[indexPath.row])) { (image, error, cache, urls) in
+                if (error != nil) {
+                    cell.newsImage.image = UIImage(named: "newsPlaceholder")
+                } else {
+                    cell.newsImage.image = image
+                }
+            }
+            
         } else {
             cell.newsImage.image = UIImage(named: "newsPlaceholder")!
         }
@@ -101,9 +107,8 @@ extension NewsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let indexPath = tableView.indexPathForSelectedRow
-        let currentCell = tableView.cellForRow(at: indexPath!) as! NewsCell
         
-        var urls = newsStoryUrlArray[(indexPath?.row)!]
+        let urls = newsStoryUrlArray[(indexPath?.row)!]
     
         UIApplication.shared.open( URL(string: urls)!, options: [:] ) { (success) in
             if success {
