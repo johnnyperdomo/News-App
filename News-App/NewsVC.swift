@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import AlamofireImage
 import SDWebImage
 
 
@@ -20,8 +19,7 @@ class NewsVC: UIViewController {
     var titleArray = [String]()
     var newsSourceArray = [String]()
     var imageURLArray = [String]()
-    var imageArray = [UIImage]()
-    
+    var newsStoryUrlArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +39,7 @@ class NewsVC: UIViewController {
                 
                 self.imageURLArray = self.imageURLArray.filter { $0 != ""} //filter array to remove nil values
                 
+                print(self.newsStoryUrlArray)
                 self.newsTableView.reloadData()
                 print(self.imageURLArray.count)
             } else {
@@ -99,6 +98,22 @@ extension NewsVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let indexPath = tableView.indexPathForSelectedRow
+        let currentCell = tableView.cellForRow(at: indexPath!) as! NewsCell
+        
+        var urls = newsStoryUrlArray[(indexPath?.row)!]
+    
+        UIApplication.shared.open( URL(string: urls)!, options: [:] ) { (success) in
+            if success {
+                print("open link")
+            }
+        }
+        
+        
+    }
+    
 }
 
 extension NewsVC {
@@ -113,14 +128,12 @@ extension NewsVC {
                 
                 for item in json["articles"].arrayValue {
                     
-                    
-            
+                
                     self.titleArray.append(item["title"].stringValue)
                     self.newsSourceArray.append(item["source"]["name"].stringValue)
                     self.imageURLArray.append(item["urlToImage"].stringValue)
+                    self.newsStoryUrlArray.append(item["url"].stringValue)
                 
-
-                    
                 }
             complete(true)
         
