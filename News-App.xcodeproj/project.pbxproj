@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		FD14783C86D9A6A12D7A23A9 /* Pods_News_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3D1693823755896713C819 /* Pods_News_App.framework */; };
 		FE2CEADF20F96F2B00E6B482 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2CEADE20F96F2B00E6B482 /* AppDelegate.swift */; };
-		FE2CEAE120F96F2B00E6B482 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2CEAE020F96F2B00E6B482 /* ViewController.swift */; };
+		FE2CEAE120F96F2B00E6B482 /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2CEAE020F96F2B00E6B482 /* NewsVC.swift */; };
 		FE2CEAE420F96F2B00E6B482 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE2CEAE220F96F2B00E6B482 /* Main.storyboard */; };
 		FE2CEAE620F96F2E00E6B482 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE2CEAE520F96F2E00E6B482 /* Assets.xcassets */; };
 		FE2CEAE920F96F2E00E6B482 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE2CEAE720F96F2E00E6B482 /* LaunchScreen.storyboard */; };
+		FE2CEAF120F978A500E6B482 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2CEAF020F978A500E6B482 /* NewsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,11 +22,12 @@
 		D14F48BE9F77B8CC2978C84C /* Pods-News-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-News-App/Pods-News-App.debug.xcconfig"; sourceTree = "<group>"; };
 		FE2CEADB20F96F2B00E6B482 /* News-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "News-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE2CEADE20F96F2B00E6B482 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FE2CEAE020F96F2B00E6B482 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FE2CEAE020F96F2B00E6B482 /* NewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 		FE2CEAE320F96F2B00E6B482 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FE2CEAE520F96F2E00E6B482 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE2CEAE820F96F2E00E6B482 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE2CEAEA20F96F2E00E6B482 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE2CEAF020F978A500E6B482 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				FE2CEADE20F96F2B00E6B482 /* AppDelegate.swift */,
-				FE2CEAE020F96F2B00E6B482 /* ViewController.swift */,
+				FE2CEAF020F978A500E6B482 /* NewsCell.swift */,
+				FE2CEAE020F96F2B00E6B482 /* NewsVC.swift */,
 				FE2CEAE220F96F2B00E6B482 /* Main.storyboard */,
 				FE2CEAE520F96F2E00E6B482 /* Assets.xcassets */,
 				FE2CEAE720F96F2E00E6B482 /* LaunchScreen.storyboard */,
@@ -202,7 +205,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE2CEAE120F96F2B00E6B482 /* ViewController.swift in Sources */,
+				FE2CEAE120F96F2B00E6B482 /* NewsVC.swift in Sources */,
+				FE2CEAF120F978A500E6B482 /* NewsCell.swift in Sources */,
 				FE2CEADF20F96F2B00E6B482 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,7 +355,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JX3EAWJE5N;
 				INFOPLIST_FILE = "News-App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.johnnyperdomo.News-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -367,7 +374,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JX3EAWJE5N;
 				INFOPLIST_FILE = "News-App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.johnnyperdomo.News-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
