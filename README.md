@@ -2,7 +2,7 @@
 Simple iOS News App that shows the Latest Breaking News Of The Day written in Swift 4
 
 ## Preview
-![Alt Text](https://media.giphy.com/media/8cyqS8fNEEKkraKiFy/giphy.gif )
+![Alt Text](https://media.giphy.com/media/dXiPEPf3vNdnhLl8cr/giphy.gif)
 
 **Built with**
 - Ios 11.4
